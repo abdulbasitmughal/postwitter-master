@@ -1,0 +1,9 @@
+<div class="bg-white rounded-lg container mx-auto mb-6 text-sm p-4 hover:shadow">
+  <div class="pb-3">
+    <a class="no-underline text-blue mr-4" [routerLink]="['/users', userEmail, 'posts']">{{userHandle}}</a>
+    <span class="font-mono text-grey-dark"> — {{postTime | timeAgo}}</span>
+  </div>
+  <p class="tracking-wide leading-normal">
+    {{postText}}
+  </p>
+</div>

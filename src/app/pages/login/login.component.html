@@ -1,0 +1,34 @@
+<div class="h-screen flex flex-col items-center justify-center">
+  <div class="px-8 py-10 bg-white rounded-lg" style="width: 400px;">
+    <div class="text-center">
+      <div class="text-2xl text-grey-darkest">Postwitter</div>
+      <div class="text-sm text-grey mt-2 tracking-wide">Login to continue</div>
+    </div>
+
+    <div class="mt-4 text-sm text-red-dark" [ngClass]="{'invisible': !error}">
+      Invalid username/password, try again!
+    </div>
+
+    <form class="my-4" [formGroup]="loginForm">
+      <div class="mb-4">
+        <div class="mb-2 text-grey-dark text-sm">Email</div>
+        <div>
+          <input type="email" formControlName="email" class="px-2 py-3 w-full border rounded-lg" />
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="mb-2 text-grey-dark text-sm">Password</div>
+        <div>
+          <input type="password" formControlName="password" class="px-2 py-3 w-full border rounded-lg" />
+        </div>
+      </div>
+    </form>
+
+    <button class="bg-blue w-full mt-2 py-4 text-white rounded-lg" type="submit" (click)="onLogin()">Login</button>
+    
+  </div>
+
+  <a class="mt-4 text-sm no-underline text-blue" [routerLink]="['/signup']">
+    Donot have an account? Signup
+  </a>
+</div>

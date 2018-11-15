@@ -1,0 +1,19 @@
+<div class="mt-6 mx-auto"  style="width: 60%;">
+  <user-card
+    [email]="userInfo.email"
+    [userHandle]="userInfo.userHandle"></user-card>
+
+  <div class="text-sm uppercase text-grey-darker pb-4 mb-4 text-center font-semibold">All posts</div>
+
+  <div *ngIf="loading">
+    <div class="text-center text-grey text-2xl mt-12">Loading...</div>
+  </div>
+  
+  <div *ngIf="(posts.length && !loading)">
+    <post-card *ngFor="let post of posts" [userHandle]="post.userHandle" [postText]="post.postText" [postTime]="post.postTime" [userEmail]="post.userEmail"></post-card>
+  </div>
+  
+  <div *ngIf="!loading && !posts.length" class="text-center text-grey text-2xl mt-12">
+    No public feed found, why not you post one :)
+  </div>
+</div>

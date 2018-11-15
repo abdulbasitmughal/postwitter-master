@@ -1,0 +1,14 @@
+<div class="mt-6 mx-auto"  style="width: 60%;">
+  <div class="text-sm uppercase text-grey-darker pb-4 mb-4 text-center font-semibold">All users</div>
+  <div *ngIf="loading">
+    <div class="text-center text-grey text-2xl mt-12">Loading...</div>
+  </div>
+  
+  <div *ngIf="users.length && !loading">
+    <user-card *ngFor="let u of users"
+      [email]="u.email"
+      [userHandle]="u.userHandle"></user-card>
+  </div>
+
+  <div *ngIf="!loading && !users.length" class="text-center text-grey text-2xl mt-12">No available at the moment :)</div>
+</div>

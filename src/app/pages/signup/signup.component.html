@@ -1,0 +1,52 @@
+<div class="h-screen flex flex-col items-center justify-center">
+    <div class="px-8 py-10 bg-white rounded-lg" style="width: 400px;">
+      <div class="text-center">
+        <div class="text-2xl text-green-darker">Postwitter</div>
+        <div class="text-sm text-grey mt-2">Sign Up to continue</div>
+      </div>
+
+      <div class="mt-4 text-sm" [ngClass]="{'invisible': !error, 'text-red-dark': error, 'text-green': !error}">
+        {{errorMessage}}
+      </div>
+  
+      <form class="my-4" [formGroup]="signUpForm" (submit)="onSignUp()">
+        <div class="mb-4">
+          <div class="mb-2 text-grey-dark text-sm">Email</div>
+          <div>
+            <input type="email" formControlName="email" class="px-2 py-3 w-full border rounded-lg" />
+          </div>
+          <div class="text-sm text-red-dark mt-1" *ngIf="email.errors?.email && email?.touched">Enter valid email address</div>
+          <div class="text-sm text-red-dark mt-1" *ngIf="email.errors?.required && email?.touched">Enter valid email address</div>
+        </div>
+        <div class="mb-6">
+          <div class="mb-2 text-grey-dark text-sm">Password</div>
+          <div>
+            <input type="password" formControlName="password" class="px-2 py-3 w-full border rounded-lg" />
+          </div>
+          <div class="mt-1 text-grey-darkest">
+            <ng2-password-strength-bar
+              [barLabel]="'Password Strength'"
+              [passwordToCheck]="password.value"
+              [strengthLabels]="strengthLabels">
+            </ng2-password-strength-bar>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="mb-2 text-grey-dark text-sm">Confirm Password</div>
+          <div>
+            <input type="password" formControlName="confirmPassword" class="px-2 py-3 w-full border rounded-lg" />
+          </div>
+          <div class="text-sm text-red-dark mt-1" *ngIf="confirmPassword.errors?.required && confirmPassword?.touched">Confirm password</div>
+          <div class="text-sm text-red-dark mt-1" *ngIf="!isConfirmPasswordMatch && (email.value || confirmPassword.value)">Password did not match</div>
+        </div>
+      </form>
+  
+      <button class="bg-blue w-full mt-4 py-4 text-white rounded-lg" type="submit" (click)="onSignUp()">Sign Up</button>
+    </div>
+
+    <a class="mt-4 text-sm no-underline text-blue" [routerLink]="['/login']">
+      Already have an account? Login
+    </a>
+
+  </div>
+  

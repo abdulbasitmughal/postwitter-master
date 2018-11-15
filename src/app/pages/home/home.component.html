@@ -1,0 +1,18 @@
+<new-post-form (post)="onSubmitPost($event)"></new-post-form>
+
+<div class="mt-12 mx-auto"  style="width: 60%;">
+  <div class="border-b border-grey-dark w-32 mx-auto"></div>
+  <div class="text-sm uppercase text-grey-darker pb-6 mt-4 text-center font-semibold">Latest post from all users</div>
+  
+  <div *ngIf="loading">
+    <div class="text-center text-grey text-2xl mt-12">Loading...</div>
+  </div>
+  
+  <div *ngIf="(posts.length && !loading)">
+    <post-card *ngFor="let post of posts" [userHandle]="post.userHandle" [postText]="post.postText" [postTime]="post.postTime" [userEmail]="post.userEmail"></post-card>
+  </div>
+  
+  <div *ngIf="!loading && !posts.length" class="text-center text-grey text-2xl mt-12">
+    No public feed found, why not you post one :)
+  </div>
+</div>

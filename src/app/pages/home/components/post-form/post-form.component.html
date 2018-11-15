@@ -1,0 +1,7 @@
+<form [formGroup]="postForm" class="bg-white border-1 border-grey rounded-lg container mx-auto shadow " style="width: 60%;">
+  <textarea formControlName="postText" rows="4" class="w-full p-4 rounded-tr-lg rounded-tl-lg" placeholder="Input text to post"></textarea>
+  <div class="flex flex-row-reverse items-center bg-grey-lighter p-3 rounded-br-lg rounded-bl-lg border-t">
+    <button class="text-sm px-6 py-3 bg-blue text-white rounded hover:bg-blue-light" (click)="onSumitPost()">POST</button>
+    <div class="mr-6 text-sm text-orange">{{alertMessage}}</div>
+  </div>
+</form>
