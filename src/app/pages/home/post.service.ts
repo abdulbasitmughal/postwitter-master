@@ -11,7 +11,7 @@ export class PostService {
     return this.http.post('/posts', postPayload);
   }
 
-  public publicPosts(): Observable<any> {
-    return this.http.get('/posts');
+  public publicPosts(pageNumber: number): Observable<any> {
+    return this.http.get(`/posts?page=${pageNumber}&limit=10`);
   }
 }

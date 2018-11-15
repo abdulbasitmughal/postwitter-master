@@ -9,22 +9,33 @@ import { PostModel } from '@/shared/models';
 export class HomeComponent implements OnInit {
   public posts: Array<PostModel> = [];
   public loading = false;
+  public showLoadMoreButton = false;
 
-  constructor(private postService: PostService) {}
+  public pageNumber = 1;
+
+  constructor(private postService: PostService) {
+  }
 
   ngOnInit() {
     this.fetchPosts();
   }
 
   private fetchPosts(): void {
-    this.loading = true;
-    this.postService.publicPosts().subscribe(
+    if (this.pageNumber === 1) {
+      this.loading = true;
+    }
+    this.postService.publicPosts(this.pageNumber).subscribe(
       ({post}) => {
         this.loading = false;
+
         if (!post) {
           return;
         }
-        this.posts = [...this.processPostsResponse(post)];
+
+        this.showLoadMoreButton = post.length === 10;
+        this.pageNumber += 1;
+
+        this.posts = [...this.posts, ...this.processPostsResponse(post)];
       },
       error => {
         this.loading = false;
@@ -51,5 +62,9 @@ export class HomeComponent implements OnInit {
         console.log('error in post POST', JSON.stringify(error));
       }
     );
+  }
+
+  public loadMore(): void {
+    this.fetchPosts();
   }
 }

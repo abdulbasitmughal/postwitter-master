@@ -10,6 +10,10 @@
   
   <div *ngIf="(posts.length && !loading)">
     <post-card *ngFor="let post of posts" [userHandle]="post.userHandle" [postText]="post.postText" [postTime]="post.postTime" [userEmail]="post.userEmail"></post-card>
+    <div class="text-center py-12">
+      <button class="text-blue" *ngIf="showLoadMoreButton" (click)="loadMore()">Load More</button>
+      <span class="text-grey-dark" *ngIf="!showLoadMoreButton">You reach end of post</span>
+    </div>
   </div>
   
   <div *ngIf="!loading && !posts.length" class="text-center text-grey text-2xl mt-12">

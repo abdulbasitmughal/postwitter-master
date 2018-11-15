@@ -1,27 +1,38 @@
-# TwitterBasic
+# Postwitter
+
+Postwitter is simple twitter like application which allows user following actions.
+- Login
+- Signup
+- Post message
+- View all feeds paginated
+- All signup users
+- All posts by selected users
+
+## Live Demo
+
+REST API's has been deployed on this link:
+https://postwitter-api.herokuapp.com/
+
+And its running interfaces are available at:
+https://postwitter-portal.herokuapp.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
-## Development server
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Project Architecture
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Each component/page is lazy loaded and fully reused components which boost project load time by downloading only meaning required page data.
 
-## Build
+`/app`
+- `/core`   [Incudes auth, guards, components which used only once in application]
+- `/shared` [Includes resuable code pieces and user data store, which never modified by repetidly used in whole application
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- `/pages`
+- `/pages/home` [home page component is responsible for Post creation and All post listing]
+- `/pages/login` [login form including service]
+- `/pages/signup` [user registration form including service]
+- `/pages/user-posts` [selected individual user own post listing and selected user profile ]
+- `/pages/users` [All users exist across the portal with option to select anyone to see its posts]
